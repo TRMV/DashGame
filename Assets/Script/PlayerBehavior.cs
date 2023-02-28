@@ -29,7 +29,11 @@ public class PlayerBehavior : MonoBehaviour
     {
         Rotation();
         Dash();
-        if (camCanFollow) CamControl();
+        if (camCanFollow && rb.velocity.y < 0.1f)
+        {
+            CamControl();
+        }            
+
     }
 
     public void Rotation()
@@ -71,7 +75,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public void CamControl()
     {
-        mycam.transform.position = new Vector3(transform.position.x, mycam.transform.position.y, transform.position.z);
+        mycam.transform.position = new Vector3(mycam.transform.position.x, mycam.transform.position.y, transform.position.z);
     }
 
     private void OnTriggerEnter(Collider other)
