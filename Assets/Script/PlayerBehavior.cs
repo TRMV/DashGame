@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerBehavior : MonoBehaviour
 {
     private Rigidbody rb;
-    [SerializeField] GameObject mycam;
     public float pullForce;
 
     public float dashSpeed;
@@ -15,7 +14,9 @@ public class PlayerBehavior : MonoBehaviour
 
     private int maxDash;
     private bool isDashing;
-    bool camCanFollow;
+
+    public GameObject mycam;
+    private bool camCanFollow;
 
     void Start()
     {
@@ -29,7 +30,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         Rotation();
         Dash();
-        if (camCanFollow && rb.velocity.y < 0.1f)
+        if (camCanFollow)
         {
             CamControl();
         }            
