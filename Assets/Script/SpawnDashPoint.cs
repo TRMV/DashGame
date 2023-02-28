@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class SpawnDashPoint : MonoBehaviour
 {
-    public int random;
+    private int random;
+    public float spawnRate;
     public GameObject[] spawnpoint;
     public GameObject Spawnable;
-    public int security;
+    private int security;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,7 @@ public class SpawnDashPoint : MonoBehaviour
 
     IEnumerator Randomizer()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(spawnRate);
         security = 0;
         random = Random.Range(0, 5);
         StartCoroutine(Randomizer());

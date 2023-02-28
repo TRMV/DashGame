@@ -61,4 +61,18 @@ public class PlayerBehavior : MonoBehaviour
         yield return new WaitForSeconds(dashLength);
         isDashing = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("KillZone"))
+        {
+            Destroy(gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Ennemy"))
+        {
+            Destroy(other.gameObject);
+            dashNumber++;
+        }
+    }
 }
