@@ -76,7 +76,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("triggerCamera")) camCanFollow = false;
+        if (other.gameObject.CompareTag("triggerCamera")) camCanFollow = true;
 
 
         if (other.gameObject.CompareTag("KillZone"))
@@ -96,6 +96,6 @@ public class PlayerBehavior : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("triggerCamera")) camCanFollow = true;
+        if (other.gameObject.CompareTag("triggerCamera")) camCanFollow = false;
     }
 }

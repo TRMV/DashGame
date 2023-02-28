@@ -6,6 +6,7 @@ TagManager:
   tags:
   - KillZone
   - Ennemy
+  - triggerCamera
   layers:
   - Default
   - TransparentFX
