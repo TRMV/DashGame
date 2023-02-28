@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerBehavior : MonoBehaviour
 {
     private Rigidbody rb;
+    [SerializeField] GameObject mycam;
     public float pullForce;
 
     public float dashSpeed;
@@ -14,10 +15,12 @@ public class PlayerBehavior : MonoBehaviour
 
     private int maxDash;
     private bool isDashing;
+    bool camCanFollow;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        mycam = GameObject.Find("Main Camera");
         maxDash = dashNumber;
     }
 
@@ -25,8 +28,8 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         Rotation();
-
         Dash();
+        if (camCanFollow) CamControl();
     }
 
     public void Rotation()
@@ -68,11 +71,14 @@ public class PlayerBehavior : MonoBehaviour
 
     public void CamControl()
     {
-
+        mycam.transform.position = new Vector3(transform.position.x, mycam.transform.position.y, transform.position.z);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("triggerCamera")) camCanFollow = false;
+
+
         if (other.gameObject.CompareTag("KillZone"))
         {
             Destroy(gameObject);
@@ -86,6 +92,10 @@ public class PlayerBehavior : MonoBehaviour
                 dashNumber++;
             }
         }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("triggerCamera")) camCanFollow = true;
     }
 }
