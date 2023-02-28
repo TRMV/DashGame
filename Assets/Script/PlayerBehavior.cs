@@ -10,11 +10,15 @@ public class PlayerBehavior : MonoBehaviour
     public float dashSpeed;
     public float dashLength;
     public int dashNumber = 3;
+    public float dashCD;
+
+    private int maxDash;
     private bool isDashing;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        maxDash = dashNumber;
     }
 
     // Update is called once per frame
@@ -62,6 +66,11 @@ public class PlayerBehavior : MonoBehaviour
         isDashing = false;
     }
 
+    public void CamControl()
+    {
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("KillZone"))
@@ -72,7 +81,11 @@ public class PlayerBehavior : MonoBehaviour
         if (other.gameObject.CompareTag("Ennemy"))
         {
             Destroy(other.gameObject);
-            dashNumber++;
+            if (dashNumber < maxDash)
+            {
+                dashNumber++;
+            }
         }
+
     }
 }
