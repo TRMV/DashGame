@@ -274,6 +274,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patern 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5365415887940200258, guid: 355a8f8a4bb9acc40a4fc83cc7156626,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8911705104233277236, guid: 355a8f8a4bb9acc40a4fc83cc7156626,
         type: 3}
       propertyPath: m_RootOrder
@@ -2229,6 +2234,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710729260663001295, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8710729260663001295, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
         type: 3}
