@@ -8,6 +8,9 @@ TagManager:
   - Ennemy
   - triggerCamera
   - Obstacles
+  - Right
+  - Left
+  - Milieu
   layers:
   - Default
   - TransparentFX
