@@ -43,7 +43,7 @@ public class PlayerBehavior : MonoBehaviour
         float ver = Input.GetAxis("Vertical");
         Vector3 lookVector = Vector3.forward * ver + -Vector3.left * hor;
 
-        if (hor != 0 && ver != 0)
+        if (hor != 0 || ver != 0)
         {
             transform.rotation = Quaternion.LookRotation(lookVector);
         }
@@ -54,7 +54,13 @@ public class PlayerBehavior : MonoBehaviour
         //gravité vers le bas
         if (!isDashing)
         {
-            rb.velocity = new Vector3(0, 0, -pullForce);
+            if (dashNumber == 0)
+            {
+                rb.velocity = new Vector3(0, 0, -pullForce * 3);
+            } else
+            {
+                rb.velocity = new Vector3(0, 0, -pullForce);
+            }
         }
 
         //dash
@@ -76,13 +82,19 @@ public class PlayerBehavior : MonoBehaviour
 
     public void CamControl()
     {
-        mycam.transform.position = new Vector3(mycam.transform.position.x, mycam.transform.position.y, transform.position.z);
+        if (isDashing && Input.GetAxis("Vertical") >= 0)
+        {
+            mycam.transform.position = new Vector3(mycam.transform.position.x, mycam.transform.position.y, transform.position.z);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("triggerCamera")) camCanFollow = true;
-
+        if (other.gameObject.CompareTag("triggerCamera"))
+        {
+            //other.transform.position += new Vector3(0, 0, 3.5f);
+            camCanFollow = true;
+        }
 
         if (other.gameObject.CompareTag("KillZone"))
         {
@@ -97,10 +109,19 @@ public class PlayerBehavior : MonoBehaviour
                 dashNumber++;
             }
         }
+
+        if (other.gameObject.CompareTag("Obstacles"))
+        {
+            Destroy(other.gameObject);
+            rb.AddForce(transform.forward * -dashSpeed * 1f, ForceMode.Impulse);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("triggerCamera")) camCanFollow = false;
+        if (other.gameObject.CompareTag("triggerCamera"))
+        {
+            camCanFollow = false;
+        }
     }
 }
