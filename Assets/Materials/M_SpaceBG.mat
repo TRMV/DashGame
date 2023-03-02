@@ -37,7 +37,7 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_dd95dbdcac064696afb7cbea4fc261f8_Texture_1:
+    - _SampleTexture2D_242135ba47b14786926ed7a7e63a5821_Texture_1:
         m_Texture: {fileID: 2800000, guid: 2697c74790c6ca94983dbd0a3c0a5400, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -57,12 +57,13 @@ Material:
     m_Floats:
     - _DashValueAdd: 0
     - _NoiseScale: 200
-    - _Pixelisation: 256
+    - _Pixelisation: 512
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothstep: 0.6
-    - _StarsSTR: 0.96
+    - _StarsSTR: 0.49
     - _StarsSize: 50
     m_Colors:
-    - _StarsScrollSpeed: {r: 0.005, g: 0.01, b: 0, a: 0}
+    - _Color: {r: 0, g: 0.3440247, b: 2, a: 0}
+    - _StarsScrollSpeed: {r: 0.01, g: 0.03, b: 0, a: 0}
   m_BuildTextureStacks: []
