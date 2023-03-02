@@ -227,7 +227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RB: {fileID: 0}
   speed: 9
-  rotationSpeed: 0
+  rotationSpeed:
+    x: 0
+    y: 0
 --- !u!54 &5306180562865833394
 Rigidbody:
   m_ObjectHideFlags: 0
