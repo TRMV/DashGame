@@ -27,11 +27,25 @@ public class HighScore_Script : MonoBehaviour
         {
             int number = player.GetComponent<PlayerBehavior>().scoring;
 
-            if (number > PlayerPrefs.GetInt("HighScore", 0))
+            if (number > PlayerPrefs.GetInt("HighScore"))
             {
-                PlayerPrefs.GetInt("HighScore", number);
-                HighScore.text = "HighScore :\n" + number.ToString() + "m";
+                PlayerPrefs.SetInt("HighScore", number);
+                HighScore.text = "HighScore :\n" + number.ToString() + "m"; 
+                
             }
+
+            NewHS(number);
+        }
+    }
+    private void NewHS(int number)
+    {
+        int New = number;
+
+        if (number > PlayerPrefs.GetInt("HighScore", New))
+        {
+            PlayerPrefs.SetInt("HighScore", number);
+            HighScore.text = "HighScore :\n" + number.ToString() + "m";
+            New = number;
         }
     }
 }
