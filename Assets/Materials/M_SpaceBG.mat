@@ -55,6 +55,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _DashValueAdd: 0
     - _NoiseScale: 200
     - _Pixelisation: 256
     - _QueueControl: 0
