@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2516851155742825761
 MeshFilter:
@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d317face7b52bd4fb3fc56a815889db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obstacle: {fileID: 9051146301413827092, guid: 610cbe924d12f164aacb398fabca4dff,
-    type: 3}
+  random: 0
+  Obstacle:
+  - {fileID: 9051146301413827092, guid: 610cbe924d12f164aacb398fabca4dff, type: 3}
+  - {fileID: 9051146301413827092, guid: efc97ac30c8bd4d45833f50ecb75c33a, type: 3}
   SpawnPoint: {fileID: 2516851155742825772}

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class NewSpawn : MonoBehaviour
 {
-    public GameObject Obstacle;
+    public int random;
+    public GameObject[] Obstacle;
     
     public GameObject SpawnPoint;
 
@@ -14,7 +15,7 @@ public class NewSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        random = Random.Range(0, 2);
     }
 
     // Update is called once per frame
@@ -22,9 +23,18 @@ public class NewSpawn : MonoBehaviour
     {
         if (security == 0)
         {
-            GameObject newDash = Instantiate(Obstacle) as GameObject;
-            newDash.transform.position = SpawnPoint.transform.position;
-            security += 1;
+            if (random == 0)
+            {
+                GameObject newDash = Instantiate(Obstacle[0]) as GameObject;
+                newDash.transform.position = SpawnPoint.transform.position;
+                security += 1;
+            }
+            if (random == 1)
+            {
+                GameObject newDash = Instantiate(Obstacle[1]) as GameObject;
+                newDash.transform.position = SpawnPoint.transform.position;
+                security += 1;
+            }
         }
     }
 }
