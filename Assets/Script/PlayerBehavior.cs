@@ -11,6 +11,9 @@ public class PlayerBehavior : MonoBehaviour
     public float pullForce;
     public int scoring;
 
+    public bool hasShield;
+    private GameObject shipMesh;
+
     public float time;
     public float reloadtime;
     public float AtractAddition;
@@ -46,6 +49,9 @@ public class PlayerBehavior : MonoBehaviour
         scoretext = GameObject.Find("ScorePlay");
         deathscreen = GameObject.Find("DeathScreen");
         pausescreen = GameObject.Find("PauseScreen");
+        shipMesh = GameObject.Find("SHip_prefab");
+
+        hasShield = true;
 
         maxDash = dashNumber;
 
@@ -73,18 +79,16 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
 
-        /*if (isDashing)
+        if (isDashing)
         {
             float bgspeed = bgMat.GetFloat("_DashValueAdd") + 0.5f * Time.deltaTime;
             bgMat.SetFloat("_DashValueAdd", bgspeed);
-            Debug.Log(bgspeed + "dash");
         }
         else
         {
             float bgspeed = bgMat.GetFloat("_DashValueAdd") + 0.01f * Time.deltaTime;
             bgMat.SetFloat("_DashValueAdd", bgspeed);
-            Debug.Log(bgspeed + "notdash");
-        }*/
+        }
     }
 
     private void LateUpdate()
@@ -121,6 +125,8 @@ public class PlayerBehavior : MonoBehaviour
         //dash
         if (Input.GetButtonDown("Dash") && !isDashing && dashNumber != 0)
         {
+            ChangeColor("M_Ship", new Color(0f, 0f, 255f, 1f));
+
             rb.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
             isDashing = true;
             dashNumber--;
@@ -132,6 +138,7 @@ public class PlayerBehavior : MonoBehaviour
     IEnumerator EndDash()
     {
         yield return new WaitForSeconds(dashLength);
+        ChangeColor("M_Ship", new Color(0f, 0f, 0f, 1f));
         isDashing = false;
     }
 
@@ -181,10 +188,7 @@ public class PlayerBehavior : MonoBehaviour
 
         if (other.gameObject.CompareTag("KillZone"))
         {
-            scoretext.SetActive(false);
-            finalscoretext.GetComponent<TextMeshProUGUI>().text = "You survived :\n" + scoring + "m";
-            deathscreen.SetActive(true);
-            GameObject.Find("RestartButtonDeath").GetComponent<Button>().Select(); ;
+            Death();
             Destroy(gameObject);
         }
 
@@ -203,7 +207,40 @@ public class PlayerBehavior : MonoBehaviour
             StartCoroutine(Particle(hitPS, other.transform));
             Destroy(other.gameObject);
             rb.AddForce(-transform.forward * dashSpeed * 1.5f, ForceMode.Impulse);
+            ChangeColor("M_Ship", new Color(255f, 0f, 0f, 1f));
+
+            if (hasShield)
+            {
+                hasShield = false;
+                Destroy(GameObject.Find("ship_shield"));
+            } else
+            {
+                Death();
+            }
         }
+    }
+
+    public void ChangeColor(string name, Color color)
+    {
+        Debug.Log("HA");
+        if (shipMesh.GetComponent<Renderer>().material.name == name)
+        {
+            Debug.Log("BE");
+            shipMesh.GetComponent<Renderer>().material.SetColor("_Color1", color);
+        }
+    }
+
+    public void Death()
+    {
+        dashNumber = 0;
+        scoretext.SetActive(false);
+        finalscoretext.GetComponent<TextMeshProUGUI>().text = "You survived :\n" + scoring + "m";
+        deathscreen.SetActive(true);
+        if (!deathscreen)
+        {
+            GameObject.Find("RestartButtonDeath").GetComponent<Button>().Select();
+        }
+        //METTRE UN FUCKING PARTICLE SYSTEM
     }
 
     IEnumerator Particle(ParticleSystem hop, Transform pos)

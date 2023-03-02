@@ -3285,6 +3285,11 @@ PrefabInstance:
       propertyPath: finalscoretext
       value: 
       objectReference: {fileID: 1770322089}
+    - target: {fileID: 8710729260663001292, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8710729260663001293, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
         type: 3}
       propertyPath: m_RootOrder
