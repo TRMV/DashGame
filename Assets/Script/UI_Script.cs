@@ -10,6 +10,8 @@ public class UI_Script : MonoBehaviour
     public GameObject player;
 
     public Image[] Ui_dash;
+
+    public GameObject[] Ui_dashJauge;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,24 +26,36 @@ public class UI_Script : MonoBehaviour
             Ui_dash[0].color = Color.blue;
             Ui_dash[1].color = Color.blue;
             Ui_dash[2].color = Color.blue;
+            Ui_dashJauge[0].SetActive(true); 
+            Ui_dashJauge[1].SetActive(true);
+            Ui_dashJauge[2].SetActive(true);
         }
         if (PlayerScript.dashNumber == 2)
         {
             Ui_dash[0].color = Color.gray;
             Ui_dash[1].color = Color.blue;
             Ui_dash[2].color = Color.blue;
+            Ui_dashJauge[0].SetActive(false);
+            Ui_dashJauge[1].SetActive(true);
+            Ui_dashJauge[2].SetActive(true);
         }
         if (PlayerScript.dashNumber == 1)
         {
             Ui_dash[0].color = Color.gray;
             Ui_dash[1].color = Color.gray;
             Ui_dash[2].color = Color.blue;
+            Ui_dashJauge[0].SetActive(false);
+            Ui_dashJauge[1].SetActive(false);
+            Ui_dashJauge[2].SetActive(true);
         }
         if (PlayerScript.dashNumber == 0)
         {
             Ui_dash[0].color = Color.gray;
             Ui_dash[1].color = Color.gray;
             Ui_dash[2].color = Color.gray;
+            Ui_dashJauge[0].SetActive(false);
+            Ui_dashJauge[1].SetActive(false);
+            Ui_dashJauge[2].SetActive(false);
         }
 
     }
