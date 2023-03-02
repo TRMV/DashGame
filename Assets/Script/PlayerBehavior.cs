@@ -128,7 +128,7 @@ public class PlayerBehavior : MonoBehaviour
         //dash
         if (Input.GetButtonDown("Dash") && !isDashing && dashNumber != 0)
         {
-            ChangeColor(new Color(0f, 0f, 255f, 1f));
+            ChangeColor(new Color(255f, 255f, 0f, 1f));
 
             rb.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
             isDashing = true;
