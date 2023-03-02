@@ -2721,11 +2721,28 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5821126217439993683, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8710729260663001290, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
         type: 3}
       propertyPath: bg
       value: 
       objectReference: {fileID: 1859085376}
+    - target: {fileID: 8710729260663001290, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
+        type: 3}
+      propertyPath: hitPS
+      value: 
+      objectReference: {fileID: 6457762496683237585, guid: 10fb9c0735637ed4ab4484f17db7f6ff,
+        type: 3}
+    - target: {fileID: 8710729260663001290, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
+        type: 3}
+      propertyPath: dashPS
+      value: 
+      objectReference: {fileID: 4681008094023263599, guid: 743fb0d4debfa664481b7d585ff89960,
+        type: 3}
     - target: {fileID: 8710729260663001290, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
         type: 3}
       propertyPath: scoretext
@@ -2802,7 +2819,8 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5821126217439993683, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65, type: 3}
