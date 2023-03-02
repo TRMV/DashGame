@@ -26,6 +26,9 @@ public class PlayerBehavior : MonoBehaviour
     public TextMeshProUGUI finalscoretext;
     public GameObject deathscreen;
 
+    public ParticleSystem dashPS;
+    public ParticleSystem hitPS;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -43,7 +46,7 @@ public class PlayerBehavior : MonoBehaviour
         Dash();
         Scoring();
 
-        if (isDashing)
+        /*if (isDashing)
         {
             float bgspeed = bgMat.GetFloat("_DashValueAdd") + 0.5f * Time.deltaTime;
             bgMat.SetFloat("_DashValueAdd", bgspeed);
@@ -54,7 +57,7 @@ public class PlayerBehavior : MonoBehaviour
             float bgspeed = bgMat.GetFloat("_DashValueAdd") + 0.01f * Time.deltaTime;
             bgMat.SetFloat("_DashValueAdd", bgspeed);
             Debug.Log(bgspeed + "notdash");
-        }
+        }*/
     }
 
     private void LateUpdate()
@@ -144,14 +147,26 @@ public class PlayerBehavior : MonoBehaviour
             if (dashNumber < maxDash)
             {
                 dashNumber++;
+                StartCoroutine(Particle(dashPS, transform));
             }
         }
 
         if (other.gameObject.CompareTag("Obstacles"))
         {
+            StartCoroutine(Particle(hitPS, other.transform));
             Destroy(other.gameObject);
-            rb.AddForce(transform.forward * -dashSpeed * 1f, ForceMode.Impulse);
+            rb.AddForce(-transform.forward * dashSpeed * 1.5f, ForceMode.Impulse);
+            Handheld.Vibrate();
+
         }
+    }
+
+    IEnumerator Particle(ParticleSystem hop, Transform pos)
+    {
+        ParticleSystem psps = Instantiate(hop, pos.position, pos.rotation);
+        psps.Play();
+        yield return new WaitForSeconds(2f);
+        Destroy(psps);
     }
 
     private void OnTriggerExit(Collider other)
