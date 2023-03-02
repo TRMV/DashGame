@@ -26,6 +26,7 @@ public class HighScore_Script : MonoBehaviour
     private void High_Score()
     {
         int number = Scoring.scoring;
+        
 
         if (number > PlayerPrefs.GetInt("HighScore", 0))
             PlayerPrefs.GetInt("HighScore", number);
