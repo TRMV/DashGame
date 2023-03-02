@@ -7,19 +7,9 @@ using TMPro;
 
 public class Menu_Script : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void PlayGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 
@@ -30,6 +20,7 @@ public class Menu_Script : MonoBehaviour
 
     public void MenuGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 }
