@@ -23,17 +23,9 @@ public class HighScore_Script : MonoBehaviour
 
     private void High_Score()
     {
-<<<<<<< HEAD
         if (player)
         {
             int number = player.GetComponent<PlayerBehavior>().scoring;
-=======
-        int number = Scoring.scoring;
-        
-
-        if (number > PlayerPrefs.GetInt("HighScore", 0))
-            PlayerPrefs.GetInt("HighScore", number);
->>>>>>> origin/main
 
             if (number > PlayerPrefs.GetInt("HighScore", 0))
             {
