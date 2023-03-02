@@ -18,7 +18,7 @@ public class Menu_Script : MonoBehaviour
     {
         
     }
-    public void playGame()
+    public void PlayGame()
     {
         SceneManager.LoadScene(1);
     }
