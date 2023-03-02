@@ -149,6 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RB: {fileID: 0}
   speed: 9
+  rotationSpeed:
+    x: -10
+    y: 10
 --- !u!1001 &2246086619100180793
 PrefabInstance:
   m_ObjectHideFlags: 0

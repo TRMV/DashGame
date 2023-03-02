@@ -40,7 +40,7 @@ Material:
     m_Floats:
     - _CenterFadeSTR: 12.02
     - _CenterFadeSize: 63.2
-    - _Pixelisation: 128
+    - _Pixelisation: 256
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 42.74

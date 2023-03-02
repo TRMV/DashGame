@@ -19,7 +19,8 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject mycam;
     private bool camCanFollow;
 
-    public Material bgMat;
+    public GameObject bg;
+    private Material bgMat;
 
     public GameObject scoretext;
     public TextMeshProUGUI finalscoretext;
@@ -32,29 +33,33 @@ public class PlayerBehavior : MonoBehaviour
         maxDash = dashNumber;
 
         deathscreen.SetActive(false);
+        bgMat = bg.GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame
     void Update()
     {    
-
         Rotation();
         Dash();
         Scoring();
 
-        if (camCanFollow)
+        if (isDashing)
         {
-            CamControl();
+            float bgspeed = bgMat.GetFloat("_DashValueAdd") + 0.5f * Time.deltaTime;
+            bgMat.SetFloat("_DashValueAdd", bgspeed);
+            Debug.Log(bgspeed + "dash");
         }
+        else
+        {
+            float bgspeed = bgMat.GetFloat("_DashValueAdd") + 0.01f * Time.deltaTime;
+            bgMat.SetFloat("_DashValueAdd", bgspeed);
+            Debug.Log(bgspeed + "notdash");
+        }
+    }
 
-        /*if (isDashing && bgMat.GetVector("_StarsScrollSpeed").y < 0.05f)
-        {
-            bgMat.SetVector("_StarsScrollSpeed", new Vector2(0.005f, bgMat.GetVector("_StarsScrollSpeed").y += 0.01f));
-        }
-        else if (!isDashing && bgMat.GetVector("_StarsScrollSpeed").y > 0.01f)
-        {
-            bgMat.SetVector("_StarsScrollSpeed", new Vector2(0.005f, 0.01f));
-        }*/
+    private void LateUpdate()
+    {
+        CamControl();
     }
 
     public void Rotation()
@@ -102,7 +107,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public void CamControl()
     {
-        if (isDashing && Input.GetAxis("Vertical") >= 0)
+        if (camCanFollow && isDashing && Input.GetAxis("Vertical") >= 0)
         {
             mycam.transform.position = new Vector3(mycam.transform.position.x, mycam.transform.position.y, transform.position.z);
         }
@@ -110,7 +115,10 @@ public class PlayerBehavior : MonoBehaviour
 
     public void Scoring()
     {
-        scoring = (int)transform.position.z;
+        if ((int)transform.position.z > scoring)
+        {
+            scoring = (int)transform.position.z;
+        }
         scoretext.GetComponent<TextMeshProUGUI>().text = scoring + "m";
     }
 

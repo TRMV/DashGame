@@ -6,29 +6,32 @@ using TMPro;
 
 public class HighScore_Script : MonoBehaviour
 {
+    public TextMeshProUGUI HighScore;
+    public GameObject player;
     
-    public TextMeshPro HighScore;
-
-    public PlayerBehavior Scoring;
     // Start is called before the first frame update
     void Start()
     {
         HighScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
-        Scoring = GetComponent<PlayerBehavior>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        High_Score();
     }
 
     private void High_Score()
     {
-        int number = Scoring.scoring;
+        if (player)
+        {
+            int number = player.GetComponent<PlayerBehavior>().scoring;
 
-        if (number > PlayerPrefs.GetInt("HighScore", 0))
-            PlayerPrefs.GetInt("HighScore", number);
-
+            if (number > PlayerPrefs.GetInt("HighScore", 0))
+            {
+                PlayerPrefs.GetInt("HighScore", number);
+                HighScore.text = "HighScore :\n" + number.ToString() + "m";
+            }
+        }
     }
 }

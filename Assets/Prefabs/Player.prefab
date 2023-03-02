@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8710729260663001290}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +66,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 10
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -81,8 +81,8 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
+  m_Constraints: 84
+  m_CollisionDetection: 3
 --- !u!114 &8710729260663001290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,10 +95,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90af404d478d5841ab23928fb82621e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pullForce: 5
+  pullForce: 8
+  scoring: 0
   dashSpeed: 80
   dashLength: 0.2
   dashNumber: 3
+  dashCD: 0
+  mycam: {fileID: 0}
+  bg: {fileID: 0}
+  scoretext: {fileID: 0}
+  finalscoretext: {fileID: 0}
+  deathscreen: {fileID: 0}
 --- !u!1001 &8710729260027021987
 PrefabInstance:
   m_ObjectHideFlags: 0
