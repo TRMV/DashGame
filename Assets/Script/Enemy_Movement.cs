@@ -9,6 +9,8 @@ public class Enemy_Movement : MonoBehaviour
     public float speed;
     public float2 rotationSpeed;
     private float rotationS;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +21,10 @@ public class Enemy_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RB.velocity = -Vector3.forward * speed;
+        RB.velocity = -Vector3.forward * speed ;
         transform.Rotate(Vector3.forward * rotationS * Time.deltaTime, Space.Self);
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
