@@ -9,6 +9,10 @@ public class PlayerBehavior : MonoBehaviour
     public float pullForce;
     public int scoring;
 
+    public float time;
+    public float reloadtime;
+    public float AtractAddition;
+
     public float dashSpeed;
     public float dashLength;
     public int dashNumber = 3;
@@ -46,6 +50,17 @@ public class PlayerBehavior : MonoBehaviour
         Dash();
         Scoring();
 
+        time = time + Time.deltaTime;
+
+        if (time >= 30f)
+        {
+            reloadtime = reloadtime + Time.deltaTime;
+            if (reloadtime >= 10f)
+            {
+                StartCoroutine(Atraction());
+                reloadtime = 0f;
+            }
+        }
         /*if (isDashing)
         {
             float bgspeed = bgMat.GetFloat("_DashValueAdd") + 0.5f * Time.deltaTime;
@@ -84,10 +99,12 @@ public class PlayerBehavior : MonoBehaviour
         {
             if (dashNumber == 0)
             {
-                rb.velocity = new Vector3(0, 0, -pullForce * 3);
+                ;
+                rb.velocity = new Vector3(0, 0, -pullForce * (3 + AtractAddition));
             } else
             {
-                rb.velocity = new Vector3(0, 0, -pullForce);
+                
+                rb.velocity = new Vector3(0, 0, -pullForce * (1 + AtractAddition));
             }
         }
 
@@ -167,6 +184,12 @@ public class PlayerBehavior : MonoBehaviour
         psps.Play();
         yield return new WaitForSeconds(2f);
         Destroy(psps);
+    }
+
+    IEnumerator Atraction()
+    {
+        yield return new WaitForSeconds(1f);
+        AtractAddition += 0.1f;
     }
 
     private void OnTriggerExit(Collider other)
