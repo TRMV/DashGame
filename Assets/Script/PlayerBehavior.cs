@@ -284,6 +284,10 @@ public class PlayerBehavior : MonoBehaviour
 
         transform.GetComponent<AudioListener>().enabled = false;
         mycam.GetComponent<AudioListener>().enabled = true;
+        if (mycam.GetComponent<Volume>().profile.TryGet(out Vignette vignette))
+        {
+            vignette.intensity.value = 0f;
+        }
 
         scoretext.SetActive(false);
         finalscoretext.GetComponent<TextMeshProUGUI>().text = "You survived :\n" + scoring + "m";
