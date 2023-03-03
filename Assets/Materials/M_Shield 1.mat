@@ -47,11 +47,11 @@ Material:
     - _Fresnel: 5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 1
+    - _Scale: 1.5
     - _Speed1: 0.2
     m_Colors:
-    - _Color: {r: 9.741941, g: 3.111301, b: 0, a: 0}
-    - _Color2: {r: 0, g: 0.427175, b: 1.782435, a: 0}
+    - _Color: {r: 1013.6494, g: 323.731, b: 0, a: 0}
+    - _Color2: {r: 0, g: 0.5731201, b: 2.379691, a: 0}
     - _Color3: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7929393300408384965
