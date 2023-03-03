@@ -66,5 +66,5 @@ Material:
     - _StarsSize: 50
     m_Colors:
     - _Color: {r: 0, g: 0.32685232, b: 2, a: 0}
-    - _StarsScrollSpeed: {r: 0.01, g: 0.03, b: 0, a: 0}
+    - _StarsScrollSpeed: {r: 0, g: 0.03, b: 0, a: 0}
   m_BuildTextureStacks: []
