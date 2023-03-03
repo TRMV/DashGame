@@ -201,7 +201,7 @@ public class PlayerBehavior : MonoBehaviour
         mycam.GetComponent<Volume>().profile.TryGet(out Vignette vignette);
 
         Mathf.Clamp(vignette.intensity.value, 0f, 0.12f);
-        if (transform.position.z <= mycam.transform.position.z)
+        if (Input.GetAxis("Vertical") < 0)
         {
             vignette.intensity.value += 0.01f * Time.deltaTime;
         } else
