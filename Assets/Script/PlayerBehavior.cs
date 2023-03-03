@@ -42,10 +42,18 @@ public class PlayerBehavior : MonoBehaviour
     public ParticleSystem dashPS;
     public ParticleSystem hitPS;
 
-    Resolution resolution;
+    public AudioSource aS;
+    public AudioClip dashAC;
+    public AudioClip boostAC;
+    public AudioClip deathAC;
+    public AudioClip asteroidAC;
+    public AudioClip shieldAC;
+
+    public AudioSource mainAS;
+    public AudioClip deathMusic;
+
     void Start()
     {
-        //resolution = 14:9;
         rb = GetComponent<Rigidbody>();
         mycam = GameObject.Find("Main Camera");
         bg = GameObject.Find("Background");
@@ -133,6 +141,7 @@ public class PlayerBehavior : MonoBehaviour
             rb.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
             isDashing = true;
             dashNumber--;
+            aS.PlayOneShot(dashAC);
 
             StartCoroutine(EndDash());
         }
@@ -196,6 +205,8 @@ public class PlayerBehavior : MonoBehaviour
 
         if (other.gameObject.CompareTag("Ennemy"))
         {
+            aS.PlayOneShot(boostAC);
+
             Destroy(other.gameObject);
             if (dashNumber < maxDash)
             {
@@ -206,6 +217,8 @@ public class PlayerBehavior : MonoBehaviour
 
         if (other.gameObject.CompareTag("Obstacles"))
         {
+            aS.PlayOneShot(asteroidAC);
+
             StartCoroutine(Particle(hitPS, other.transform));
             Destroy(other.gameObject);
             rb.AddForce(-transform.forward * dashSpeed * 1.5f, ForceMode.Impulse);
@@ -213,6 +226,8 @@ public class PlayerBehavior : MonoBehaviour
 
             if (hasShield)
             {
+                aS.PlayOneShot(shieldAC);
+
                 hasShield = false;
                 Destroy(GameObject.Find("ship_shield"));
             } else
@@ -240,13 +255,21 @@ public class PlayerBehavior : MonoBehaviour
 
     public void Death()
     {
+        aS.PlayOneShot(deathAC);
+        mainAS.Stop();
+        mainAS.clip = deathMusic;
+        mainAS.loop = true;
+        mainAS.Play();
+
+        transform.GetComponent<AudioListener>().enabled = false;
+        mycam.GetComponent<AudioListener>().enabled = true;
+
         scoretext.SetActive(false);
         finalscoretext.GetComponent<TextMeshProUGUI>().text = "You survived :\n" + scoring + "m";
         deathscreen.SetActive(true);
         GameObject.Find("RestartButtonDeath").GetComponent<Button>().Select();
         StartCoroutine(Particle(hitPS, transform));
         Destroy(gameObject);
-        //METTRE UN FUCKING PARTICLE SYSTEM
     }
 
     IEnumerator Particle(ParticleSystem hop, Transform pos)
