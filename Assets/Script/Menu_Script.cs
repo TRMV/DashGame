@@ -7,9 +7,15 @@ using TMPro;
 
 public class Menu_Script : MonoBehaviour
 {
+
+    private void Start()
+    {
+        
+    }
     private void Update()
     {
         Screen.SetResolution(694, 1080, FullScreenMode.Windowed);
+        
         /*
         if (Screen.fullScreen)
         {
