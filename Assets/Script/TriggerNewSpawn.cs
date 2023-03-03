@@ -30,7 +30,7 @@ public class TriggerNewSpawn : MonoBehaviour
                     {
                         Debug.Log("1");
                         GameObject newGameplay = Instantiate(spawn_possible[0]) as GameObject;
-                        newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 75f);
+                        newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 112.5f);
                         security += 1;
                     }
                 }
@@ -40,7 +40,7 @@ public class TriggerNewSpawn : MonoBehaviour
                     {
                         Debug.Log("4");
                         GameObject newGameplay = Instantiate(spawn_possible[3]) as GameObject;
-                        newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 75f);
+                        newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 112.5f);
                         security += 1;
                     }
                 }
@@ -59,7 +59,7 @@ public class TriggerNewSpawn : MonoBehaviour
                         {
                             Debug.Log("2");
                             GameObject newGameplay = Instantiate(spawn_possible[1]) as GameObject;
-                            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 75f);
+                            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 112.5f);
                             security += 1;
                         }
                     }
@@ -69,7 +69,7 @@ public class TriggerNewSpawn : MonoBehaviour
                         {
                             Debug.Log("5");
                             GameObject newGameplay = Instantiate(spawn_possible[4]) as GameObject;
-                            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 75f);
+                            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 112.5f);
                             security += 1;
                         }
                     }
@@ -82,7 +82,7 @@ public class TriggerNewSpawn : MonoBehaviour
                         {
                             Debug.Log("3");
                             GameObject newGameplay = Instantiate(spawn_possible[2]) as GameObject;
-                            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 75f);
+                            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 112.5f);
                             security += 1;
                         }
                     }
@@ -92,7 +92,7 @@ public class TriggerNewSpawn : MonoBehaviour
                         {
                             Debug.Log("6");
                             GameObject newGameplay = Instantiate(spawn_possible[5]) as GameObject;
-                            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 75f);
+                            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 112.5f);
                             security += 1;
                         }
                     }

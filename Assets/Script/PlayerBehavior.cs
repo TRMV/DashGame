@@ -217,11 +217,11 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (lastWidth != Screen.width)
         {
-            Screen.SetResolution(Screen.width, Screen.width * (16f / 9f));
+            //Screen.SetResolution(Screen.width, Screen.width * (16f / 9f));
         }
         else if (lastHeight != Screen.height)
         {
-            Screen.SetResolution(Screen.height * (9f / 16f), Screen.height);
+            //Screen.SetResolution(Screen.height * (9f / 16f), Screen.height);
         }
 
         lastWidth = Screen.width;
