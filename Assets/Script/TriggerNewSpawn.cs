@@ -23,17 +23,17 @@ public class TriggerNewSpawn : MonoBehaviour
                 if (randomizer == 0)
                 {
                     Debug.Log("1");
-                    Spawn(other.gameObject, 0);
+                    Spawn(0);
                 }
                 if (randomizer == 1)
                 {
                     Debug.Log("4");
-                    Spawn(other.gameObject, 3);
+                    Spawn(3);
                 }
                 if (randomizer == 2)
                 {
                     Debug.Log("1");
-                    Spawn(other.gameObject, 0);
+                    Spawn(0);
                 }
             }
             #endregion
@@ -47,17 +47,17 @@ public class TriggerNewSpawn : MonoBehaviour
                     if (randomizer == 0)
                     {
                         Debug.Log("2");
-                        Spawn(other.gameObject, 1);
+                        Spawn(1);
                     }
                     if (randomizer == 1)
                     {
                         Debug.Log("5");
-                        Spawn(other.gameObject, 4);
+                        Spawn(4);
                     }
                     if (randomizer == 2)
                     {
                         Debug.Log("7");
-                        Spawn(other.gameObject, 6);
+                        Spawn(6);
                     }
                 }
                 if (randoLR == 1)
@@ -65,17 +65,17 @@ public class TriggerNewSpawn : MonoBehaviour
                     if (randomizer == 0)
                     {
                         Debug.Log("3");
-                        Spawn(other.gameObject, 2);
+                        Spawn(2);
                     }
                     else if (randomizer == 1)
                     {
                         Debug.Log("6");
-                        Spawn(other.gameObject, 5);
+                        Spawn(5);
                     }
                     else if (randomizer == 2)
                     {
                         Debug.Log("8");
-                        Spawn(other.gameObject, 7);
+                        Spawn(7);
                     }
                 }
 
@@ -85,13 +85,13 @@ public class TriggerNewSpawn : MonoBehaviour
     }
 
 
-    public void Spawn(GameObject other, int spawnnumber)
+    public void Spawn(int spawnnumber)
     {
         if (security == 0)
         {
             Debug.Log("Whoa !");
-            GameObject newGameplay = Instantiate(spawn_possible[7]);
-            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + distance);
+            GameObject newGameplay = Instantiate(spawn_possible[spawnnumber]);
+            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + distance);
             security++;
         }
     }

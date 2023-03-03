@@ -118,7 +118,7 @@ Transform:
   - {fileID: 2208565072546727581}
   - {fileID: 5974079452737366654}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &2647149296522443898
 SphereCollider:
@@ -191,6 +191,8 @@ MonoBehaviour:
   dashLength: 0.2
   dashNumber: 3
   dashCD: 0
+  shieldGO: {fileID: 5312889881708066226}
+  shieldmax: 1
   finalscoretext: {fileID: 0}
   dashPS: {fileID: 4681008094023263599, guid: 743fb0d4debfa664481b7d585ff89960, type: 3}
   hitPS: {fileID: 6457762496683237585, guid: 10fb9c0735637ed4ab4484f17db7f6ff, type: 3}

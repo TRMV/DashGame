@@ -80,8 +80,13 @@ public class PlayerBehavior : MonoBehaviour
 
     void Update()
     {    
-        Rotation();
-        Dash();
+        if (!isPaused)
+        {
+            Rotation();
+            Dash();
+
+        }
+
         Pause();
         Scoring();
         VolumeCam();;
@@ -121,7 +126,7 @@ public class PlayerBehavior : MonoBehaviour
         float ver = Input.GetAxis("Vertical");
         Vector3 lookVector = Vector3.forward * ver + -Vector3.left * hor;
 
-        if ((hor != 0 || ver != 0) && !isPaused)
+        if ((hor != 0 || ver != 0))
         {
             transform.rotation = Quaternion.LookRotation(lookVector);
         }
@@ -237,7 +242,8 @@ public class PlayerBehavior : MonoBehaviour
             {
                 dashNumber++;
                 StartCoroutine(Particle(dashPS, transform));
-            } else
+            }
+            else
             {
                 if (hasShield == false)
                 {
@@ -324,8 +330,8 @@ public class PlayerBehavior : MonoBehaviour
     {
         ParticleSystem psps = Instantiate(hop, pos.position, pos.rotation);
         psps.Play();
-        yield return new WaitForSeconds(2f);
-        Destroy(psps);
+        yield return new WaitForSeconds(1f);
+        Destroy(psps.gameObject);
     }
 
     IEnumerator Atraction()
