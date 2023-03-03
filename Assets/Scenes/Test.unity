@@ -2392,7 +2392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.54901963}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3795,11 +3795,6 @@ PrefabInstance:
       objectReference: {fileID: 1522524728}
     - target: {fileID: 8710729260663001290, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
         type: 3}
-      propertyPath: shieldmax
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8710729260663001290, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
-        type: 3}
       propertyPath: finalscoretext
       value: 
       objectReference: {fileID: 1770322089}
@@ -3807,21 +3802,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8710729260663001293, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8710729260663001293, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8710729260663001293, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 8710729260663001293, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
         type: 3}

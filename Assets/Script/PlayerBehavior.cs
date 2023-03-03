@@ -55,6 +55,7 @@ public class PlayerBehavior : MonoBehaviour
     public AudioClip deathAC;
     public AudioClip asteroidAC;
     public AudioClip shieldAC;
+    public AudioClip recoverAC;
 
     public AudioSource mainAS;
     public AudioClip deathMusic;
@@ -256,6 +257,7 @@ public class PlayerBehavior : MonoBehaviour
                         shieldRecharge = 0;
                         shieldGO.SetActive(true);
                         GameObject.Find("UI_ShieldON").GetComponent<Image>().fillAmount = 1;
+                        aS.PlayOneShot(recoverAC);
                     }
                 }
             }

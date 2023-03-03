@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 8710729260663001294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 4.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2208565072546727581}
@@ -192,7 +192,7 @@ MonoBehaviour:
   dashNumber: 3
   dashCD: 0
   shieldGO: {fileID: 5312889881708066226}
-  shieldmax: 1
+  shieldmax: 2
   finalscoretext: {fileID: 0}
   dashPS: {fileID: 4681008094023263599, guid: 743fb0d4debfa664481b7d585ff89960, type: 3}
   hitPS: {fileID: 6457762496683237585, guid: 10fb9c0735637ed4ab4484f17db7f6ff, type: 3}
@@ -205,6 +205,7 @@ MonoBehaviour:
   deathAC: {fileID: 8300000, guid: 9c9805cb89757014a9350f9adf9876f2, type: 3}
   asteroidAC: {fileID: 8300000, guid: a2f1b93c84dd3c84abff7576dfecf84d, type: 3}
   shieldAC: {fileID: 8300000, guid: 04e98a92259271149aae5be2262ce414, type: 3}
+  recoverAC: {fileID: 8300000, guid: 7e2a83a355096134987b6467455bbe11, type: 3}
   mainAS: {fileID: 0}
   deathMusic: {fileID: 8300000, guid: 4ebb2bd16b9a6414cbf1f0e5a958103a, type: 3}
 --- !u!81 &1573175646
