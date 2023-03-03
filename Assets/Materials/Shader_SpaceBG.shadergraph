@@ -26,6 +26,9 @@
         },
         {
             "m_Id": "8163323ca9f84a328880ce8893b52d56"
+        },
+        {
+            "m_Id": "8ac51726be164db9aba198c40c962c4b"
         }
     ],
     "m_Keywords": [],
@@ -233,6 +236,9 @@
         },
         {
             "m_Id": "7a84bde613d7457994200eb6277dba25"
+        },
+        {
+            "m_Id": "4630d3460e654558896193a613c8e7e8"
         }
     ],
     "m_GroupDatas": [],
@@ -502,6 +508,20 @@
                     "m_Id": "af2a62f876444a58934c09289d74a207"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "4630d3460e654558896193a613c8e7e8"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "bc9a154868894f17b911e086554d1f39"
+                },
+                "m_SlotId": 1
             }
         },
         {
@@ -2767,6 +2787,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "2968ee25715f4759ba853b0d32cb0eb9",
+    "m_Id": 0,
+    "m_DisplayName": "Nebula STR",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "2b3ecad2a21e451ead66217d969a31e4",
     "m_Id": 0,
@@ -2979,6 +3014,9 @@
         },
         {
             "m_Id": "8163323ca9f84a328880ce8893b52d56"
+        },
+        {
+            "m_Id": "8ac51726be164db9aba198c40c962c4b"
         }
     ]
 }
@@ -3560,6 +3598,42 @@
         "y": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "4630d3460e654558896193a613c8e7e8",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 775.10009765625,
+            "y": 823.4000854492188,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "2968ee25715f4759ba853b0d32cb0eb9"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "8ac51726be164db9aba198c40c962c4b"
+    }
 }
 
 {
@@ -5417,8 +5491,8 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 0.0,
-        "g": 0.344024658203125,
+        "r": 0.040546417236328128,
+        "g": 0.0,
         "b": 2.0,
         "a": 0.0
     },
@@ -5604,6 +5678,34 @@
         "z": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "8ac51726be164db9aba198c40c962c4b",
+    "m_Guid": {
+        "m_GuidSerialized": "0379fefb-24f5-4e62-bde0-efdb76175dda"
+    },
+    "m_Name": "Nebula STR",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Nebula STR",
+    "m_DefaultReferenceName": "_Nebula_STR",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.23999999463558198,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
 }
 
 {
@@ -9482,7 +9584,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "x": 0.009999999776482582,
+        "x": 0.0,
         "y": 0.029999999329447748,
         "z": 0.0,
         "w": 0.0
