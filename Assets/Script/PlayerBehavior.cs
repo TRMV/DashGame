@@ -42,6 +42,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public ParticleSystem dashPS;
     public ParticleSystem hitPS;
+    public ParticleSystem shieldPS;
 
     public AudioSource aS;
     public AudioClip dashAC;
@@ -265,7 +266,8 @@ public class PlayerBehavior : MonoBehaviour
                 aS.PlayOneShot(shieldAC);
 
                 hasShield = false;
-                Destroy(GameObject.Find("ship_shield"));
+                StartCoroutine(Particle(shieldPS, transform));
+                Destroy(GameObject.Find("ShieldSphere"));
             } else
             {
                 Death();

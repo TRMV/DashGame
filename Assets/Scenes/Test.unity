@@ -2846,7 +2846,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: afe6bc0751b6aa145a42d8d9c6335515, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 71e72e591b84ea743b7ff848c839d243, type: 2}
 --- !u!1 &1573175640 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8710729260663001294, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
@@ -3689,6 +3689,12 @@ PrefabInstance:
       propertyPath: shieldAC
       value: 
       objectReference: {fileID: 8300000, guid: 04e98a92259271149aae5be2262ce414, type: 3}
+    - target: {fileID: 8710729260663001290, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
+        type: 3}
+      propertyPath: shieldPS
+      value: 
+      objectReference: {fileID: 1561864763042077326, guid: 6d62a97ca30f85440bdafd1f3174ad2a,
+        type: 3}
     - target: {fileID: 8710729260663001290, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
         type: 3}
       propertyPath: scoretext
