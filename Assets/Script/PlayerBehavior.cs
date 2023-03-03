@@ -27,8 +27,6 @@ public class PlayerBehavior : MonoBehaviour
     private int maxDash;
     private bool isDashing;
 
-    public GameObject ShieldUI;
-
     private GameObject mycam;
     private bool camCanFollow;
 
@@ -56,9 +54,6 @@ public class PlayerBehavior : MonoBehaviour
 
     public AudioSource mainAS;
     public AudioClip deathMusic;
-
-    private float lastWidth;
-    private float lastHeight;
 
     void Start()
     {
@@ -206,9 +201,11 @@ public class PlayerBehavior : MonoBehaviour
         Mathf.Clamp(vignette.intensity.value, 0f, 0.12f);
         if (Input.GetAxis("Vertical") < 0)
         {
+            Debug.Log("AH");
             vignette.intensity.value += 0.01f * Time.deltaTime;
         } else
         {
+            Debug.Log("BE");
             vignette.intensity.value -= 0.01f * Time.deltaTime;
         }
         Mathf.Clamp(vignette.intensity.value, 0f, 0.12f);
@@ -255,7 +252,7 @@ public class PlayerBehavior : MonoBehaviour
                 hasShield = false;
                 StartCoroutine(Particle(shieldPS, transform));
                 Destroy(GameObject.Find("ShieldSphere"));
-                ShieldUI.SetActive(false);
+                Destroy(GameObject.Find("UI_ShieldON"));
             } else
             {
                 Death();
@@ -293,6 +290,9 @@ public class PlayerBehavior : MonoBehaviour
         deathscreen.SetActive(true);
         GameObject.Find("RestartButtonDeath").GetComponent<Button>().Select();
         StartCoroutine(Particle(hitPS, transform));
+
+        GameObject.Find("UI_DashBar").SetActive(false); 
+        Destroy(GameObject.Find("UI_ShieldOFF"));
         Destroy(gameObject);
     }
 

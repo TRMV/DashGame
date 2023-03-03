@@ -10,6 +10,11 @@ public class Menu_Script : MonoBehaviour
     private void Update()
     {
         Screen.SetResolution(694, 1080, FullScreenMode.Windowed);
+
+        if (Screen.fullScreen)
+        {
+            Screen.fullScreen = false;
+        }
     }
 
     public void PlayGame()
