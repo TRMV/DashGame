@@ -278,7 +278,7 @@ MonoBehaviour:
   - {fileID: 5365415887940200258, guid: 0066212669df3174eb022b0426a16fe6, type: 3}
   - {fileID: 5365415887940200258, guid: 0082e80b674781e4db7487a692ff8e87, type: 3}
   - {fileID: 5365415887940200258, guid: 021ce80e127164a48a1f7425aa7d075c, type: 3}
-  distance: 100
+  distance: 125
 --- !u!1 &5365415887940200258
 GameObject:
   m_ObjectHideFlags: 0
