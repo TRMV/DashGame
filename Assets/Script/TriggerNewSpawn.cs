@@ -50,7 +50,7 @@ public class TriggerNewSpawn : MonoBehaviour
             #region (Prochaine tile : Commence soit par la gauche soit par la droite)
             if (CompareTag("Milieu"))
             {
-                randoLR = Random.Range(0, 2);
+                randoLR = Random.Range(0, 3);
                 if (randoLR == 0)
                 {
                     if (randomizer == 0)
@@ -69,6 +69,16 @@ public class TriggerNewSpawn : MonoBehaviour
                         {
                             Debug.Log("5");
                             GameObject newGameplay = Instantiate(spawn_possible[4]) as GameObject;
+                            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 112.5f);
+                            security += 1;
+                        }
+                    }
+                    if (randomizer == 2)
+                    {
+                        if (security == 0)
+                        {
+                            Debug.Log("7");
+                            GameObject newGameplay = Instantiate(spawn_possible[6]) as GameObject;
                             newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 112.5f);
                             security += 1;
                         }
@@ -92,6 +102,16 @@ public class TriggerNewSpawn : MonoBehaviour
                         {
                             Debug.Log("6");
                             GameObject newGameplay = Instantiate(spawn_possible[5]) as GameObject;
+                            newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 112.5f);
+                            security += 1;
+                        }
+                    }
+                    if (randomizer == 2)
+                    {
+                        if (security == 0)
+                        {
+                            Debug.Log("8");
+                            GameObject newGameplay = Instantiate(spawn_possible[7]) as GameObject;
                             newGameplay.transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z + 112.5f);
                             security += 1;
                         }
