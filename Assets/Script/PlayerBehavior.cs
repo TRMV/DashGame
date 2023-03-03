@@ -27,6 +27,7 @@ public class PlayerBehavior : MonoBehaviour
     private int maxDash;
     private bool isDashing;
 
+    public GameObject shieldGO;
     public int shieldmax;
     private int shieldRecharge;
 
@@ -247,7 +248,7 @@ public class PlayerBehavior : MonoBehaviour
                     {
                         hasShield = true;
                         shieldRecharge = 0;
-                        GameObject.Find("ShieldSphere").SetActive(true);
+                        shieldGO.SetActive(true);
                         GameObject.Find("UI_ShieldON").GetComponent<Image>().fillAmount = 1;
                     }
                 }
@@ -269,8 +270,7 @@ public class PlayerBehavior : MonoBehaviour
 
                 hasShield = false;
                 StartCoroutine(Particle(shieldPS, transform));
-                GameObject.Find("ShieldSphere").SetActive(false);
-
+                shieldGO.SetActive(false);
                 GameObject.Find("UI_ShieldON").GetComponent<Image>().fillAmount = 0;
             }
             else
