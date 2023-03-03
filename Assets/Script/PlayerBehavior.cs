@@ -83,8 +83,7 @@ public class PlayerBehavior : MonoBehaviour
         Dash();
         Pause();
         Scoring();
-        VolumeCam();
-        //ScreenRes();
+        VolumeCam();;
 
         time += Time.deltaTime;
 
@@ -211,21 +210,6 @@ public class PlayerBehavior : MonoBehaviour
             vignette.intensity.value -= 0.01f * Time.deltaTime;
         }
         Mathf.Clamp(vignette.intensity.value, 0f, 0.12f);
-    }
-
-    public void ScreenRes()
-    {
-        if (lastWidth != Screen.width)
-        {
-            //Screen.SetResolution(Screen.width, Screen.width * (16f / 9f));
-        }
-        else if (lastHeight != Screen.height)
-        {
-            //Screen.SetResolution(Screen.height * (9f / 16f), Screen.height);
-        }
-
-        lastWidth = Screen.width;
-        lastHeight = Screen.height;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -7,6 +7,11 @@ using TMPro;
 
 public class Menu_Script : MonoBehaviour
 {
+    private void Update()
+    {
+        Screen.SetResolution(694, 1080, FullScreenMode.Windowed);
+    }
+
     public void PlayGame()
     {
         Time.timeScale = 1;
