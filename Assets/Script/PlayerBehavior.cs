@@ -27,6 +27,8 @@ public class PlayerBehavior : MonoBehaviour
     private int maxDash;
     private bool isDashing;
 
+    private int shieldRecharge;
+
     private GameObject mycam;
     private bool camCanFollow;
 
@@ -233,6 +235,21 @@ public class PlayerBehavior : MonoBehaviour
             {
                 dashNumber++;
                 StartCoroutine(Particle(dashPS, transform));
+            } else
+            {
+                if (hasShield == false)
+                {
+                    shieldRecharge++;
+                    GameObject.Find("UI_ShieldON").GetComponent<Image>().fillAmount += 1/3;
+
+                    if (shieldRecharge == 3)
+                    {
+                        hasShield = true;
+                        shieldRecharge = 0;
+                        GameObject.Find("ShieldSphere").SetActive(true);
+                        GameObject.Find("UI_ShieldON").GetComponent<Image>().fillAmount = 1;
+                    }
+                }
             }
         }
 
@@ -251,9 +268,11 @@ public class PlayerBehavior : MonoBehaviour
 
                 hasShield = false;
                 StartCoroutine(Particle(shieldPS, transform));
-                Destroy(GameObject.Find("ShieldSphere"));
-                Destroy(GameObject.Find("UI_ShieldON"));
-            } else
+                GameObject.Find("ShieldSphere").SetActive(false);
+
+                GameObject.Find("UI_ShieldON").GetComponent<Image>().fillAmount = 0;
+            }
+            else
             {
                 Death();
             }
