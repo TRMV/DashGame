@@ -144,7 +144,7 @@ public class PlayerBehavior : MonoBehaviour
         //dash
         if (Input.GetButtonDown("Dash") && !isDashing && dashNumber != 0)
         {
-            ChangeColor(new Color(255f, 255f, 0f, 1f));
+            ChangeColor(new Color(255f, 255f, 0f, 0.5f));
 
             rb.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
             isDashing = true;
@@ -215,14 +215,14 @@ public class PlayerBehavior : MonoBehaviour
 
     public void ScreenRes()
     {
-        /*if (lastWidth != Screen.width)
+        if (lastWidth != Screen.width)
         {
             Screen.SetResolution(Screen.width, Screen.width * (16f / 9f));
         }
         else if (lastHeight != Screen.height)
         {
             Screen.SetResolution(Screen.height * (9f / 16f), Screen.height);
-        }*/
+        }
 
         lastWidth = Screen.width;
         lastHeight = Screen.height;
@@ -260,7 +260,7 @@ public class PlayerBehavior : MonoBehaviour
             StartCoroutine(Particle(astePS, other.transform));
             Destroy(other.gameObject);
             rb.AddForce(-transform.forward * dashSpeed * 1.5f, ForceMode.Impulse);
-            ChangeColor(new Color(255f, 0f, 0f, 1f));
+            ChangeColor(new Color(255f, 0f, 0f, 0.5f));
 
             if (hasShield)
             {
