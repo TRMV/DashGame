@@ -12,7 +12,7 @@ public class HighScore_Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HighScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+        HighScore.text = "HighScore :\n" + PlayerPrefs.GetInt("HighScore").ToString() + "m";
     }
 
     // Update is called once per frame
@@ -25,16 +25,15 @@ public class HighScore_Script : MonoBehaviour
     {
         if (player)
         {
-            int number = player.GetComponent<PlayerBehavior>().scoring;
+            int seconds = player.GetComponent<PlayerBehavior>().scoring;
 
-            if (number > PlayerPrefs.GetInt("HighScore"))
+            if (seconds > PlayerPrefs.GetInt("HighScore"))
             {
-                PlayerPrefs.SetInt("HighScore", number);
-                HighScore.text = "HighScore :\n" + number.ToString() + "m"; 
-                
+                PlayerPrefs.SetInt("HighScore", seconds);
+                HighScore.text = "HighScore :\n" + seconds.ToString() + "m";
             }
 
-            NewHS(number);
+            NewHS(seconds);
         }
     }
     private void NewHS(int number)

@@ -23,8 +23,6 @@ public class Enemy_Movement : MonoBehaviour
     {
         RB.velocity = -Vector3.forward * speed ;
         transform.Rotate(Vector3.forward * rotationS * Time.deltaTime, Space.Self);
-
-        
     }
 
     private void OnTriggerEnter(Collider other)

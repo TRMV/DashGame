@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerBehavior : MonoBehaviour
 {
     private Rigidbody rb;
     public float pullForce;
     public int scoring;
+
+    public bool hasShield;
+    private GameObject shipMesh;
+    public Material shipmatref;
 
     public float time;
     public float reloadtime;
@@ -38,6 +43,19 @@ public class PlayerBehavior : MonoBehaviour
     public ParticleSystem dashPS;
     public ParticleSystem hitPS;
 
+    public AudioSource aS;
+    public AudioClip dashAC;
+    public AudioClip boostAC;
+    public AudioClip deathAC;
+    public AudioClip asteroidAC;
+    public AudioClip shieldAC;
+
+    public AudioSource mainAS;
+    public AudioClip deathMusic;
+
+    private float lastWidth;
+    private float lastHeight;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,6 +64,9 @@ public class PlayerBehavior : MonoBehaviour
         scoretext = GameObject.Find("ScorePlay");
         deathscreen = GameObject.Find("DeathScreen");
         pausescreen = GameObject.Find("PauseScreen");
+        shipMesh = GameObject.Find("SHip_prefab");
+
+        hasShield = true;
 
         maxDash = dashNumber;
 
@@ -60,10 +81,12 @@ public class PlayerBehavior : MonoBehaviour
         Dash();
         Pause();
         Scoring();
+        VolumeCam();
+        //ScreenRes();
 
         time += Time.deltaTime;
 
-        if (time >= 30f)
+        if (time >= 5f)
         {
             reloadtime = reloadtime + Time.deltaTime;
             if (reloadtime >= 10f)
@@ -73,18 +96,16 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
 
-        /*if (isDashing)
+        if (isDashing)
         {
             float bgspeed = bgMat.GetFloat("_DashValueAdd") + 0.5f * Time.deltaTime;
             bgMat.SetFloat("_DashValueAdd", bgspeed);
-            Debug.Log(bgspeed + "dash");
         }
         else
         {
             float bgspeed = bgMat.GetFloat("_DashValueAdd") + 0.01f * Time.deltaTime;
             bgMat.SetFloat("_DashValueAdd", bgspeed);
-            Debug.Log(bgspeed + "notdash");
-        }*/
+        }
     }
 
     private void LateUpdate()
@@ -121,9 +142,12 @@ public class PlayerBehavior : MonoBehaviour
         //dash
         if (Input.GetButtonDown("Dash") && !isDashing && dashNumber != 0)
         {
+            ChangeColor(new Color(255f, 255f, 0f, 1f));
+
             rb.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
             isDashing = true;
             dashNumber--;
+            aS.PlayOneShot(dashAC);
 
             StartCoroutine(EndDash());
         }
@@ -132,6 +156,7 @@ public class PlayerBehavior : MonoBehaviour
     IEnumerator EndDash()
     {
         yield return new WaitForSeconds(dashLength);
+        ChangeColor(new Color(0f, 0f, 0f, 1f));
         isDashing = false;
     }
 
@@ -171,6 +196,36 @@ public class PlayerBehavior : MonoBehaviour
         scoretext.GetComponent<TextMeshProUGUI>().text = scoring + "m";
     }
 
+    public void VolumeCam()
+    {
+        mycam.GetComponent<Volume>().profile.TryGet(out Vignette vignette);
+
+        Mathf.Clamp(vignette.intensity.value, 0f, 0.12f);
+        if (transform.position.z <= mycam.transform.position.z)
+        {
+            vignette.intensity.value += 0.01f * Time.deltaTime;
+        } else
+        {
+            vignette.intensity.value -= 0.01f * Time.deltaTime;
+        }
+        Mathf.Clamp(vignette.intensity.value, 0f, 0.12f);
+    }
+
+    public void ScreenRes()
+    {
+        /*if (lastWidth != Screen.width)
+        {
+            Screen.SetResolution(Screen.width, Screen.width * (16f / 9f));
+        }
+        else if (lastHeight != Screen.height)
+        {
+            Screen.SetResolution(Screen.height * (9f / 16f), Screen.height);
+        }*/
+
+        lastWidth = Screen.width;
+        lastHeight = Screen.height;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("triggerCamera"))
@@ -181,15 +236,13 @@ public class PlayerBehavior : MonoBehaviour
 
         if (other.gameObject.CompareTag("KillZone"))
         {
-            scoretext.SetActive(false);
-            finalscoretext.GetComponent<TextMeshProUGUI>().text = "You survived :\n" + scoring + "m";
-            deathscreen.SetActive(true);
-            GameObject.Find("RestartButtonDeath").GetComponent<Button>().Select(); ;
-            Destroy(gameObject);
+            Death();
         }
 
         if (other.gameObject.CompareTag("Ennemy"))
         {
+            aS.PlayOneShot(boostAC);
+
             Destroy(other.gameObject);
             if (dashNumber < maxDash)
             {
@@ -200,10 +253,57 @@ public class PlayerBehavior : MonoBehaviour
 
         if (other.gameObject.CompareTag("Obstacles"))
         {
+            aS.PlayOneShot(asteroidAC);
+
             StartCoroutine(Particle(hitPS, other.transform));
             Destroy(other.gameObject);
             rb.AddForce(-transform.forward * dashSpeed * 1.5f, ForceMode.Impulse);
+            ChangeColor(new Color(255f, 0f, 0f, 1f));
+
+            if (hasShield)
+            {
+                aS.PlayOneShot(shieldAC);
+
+                hasShield = false;
+                Destroy(GameObject.Find("ship_shield"));
+            } else
+            {
+                Death();
+            }
         }
+    }
+
+    public void ChangeColor(Color color)
+    {
+        int range = shipMesh.GetComponent<Renderer>().materials.Length;
+
+        for (int m = 1; m < range; m++)
+        {
+            if (shipMesh.GetComponent<Renderer>().materials[m] = shipmatref)
+            {
+                shipMesh.GetComponent<Renderer>().materials[m].SetColor("_Color1", color);
+            }
+        }
+
+    }
+
+    public void Death()
+    {
+        aS.PlayOneShot(deathAC);
+        mainAS.Stop();
+        mainAS.clip = deathMusic;
+        mainAS.loop = true;
+        mainAS.Play();
+
+        transform.GetComponent<AudioListener>().enabled = false;
+        mycam.GetComponent<AudioListener>().enabled = true;
+
+        scoretext.SetActive(false);
+        finalscoretext.GetComponent<TextMeshProUGUI>().text = "You survived :\n" + scoring + "m";
+        deathscreen.SetActive(true);
+        GameObject.Find("RestartButtonDeath").GetComponent<Button>().Select();
+        StartCoroutine(Particle(hitPS, transform));
+        Destroy(gameObject);
     }
 
     IEnumerator Particle(ParticleSystem hop, Transform pos)
@@ -217,7 +317,7 @@ public class PlayerBehavior : MonoBehaviour
     IEnumerator Atraction()
     {
         yield return new WaitForSeconds(1f);
-        AtractAddition += 0.1f;
+        AtractAddition += 0.5f;
     }
 
     private void OnTriggerExit(Collider other)
