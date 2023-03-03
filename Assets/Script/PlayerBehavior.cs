@@ -42,6 +42,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public ParticleSystem dashPS;
     public ParticleSystem hitPS;
+    public ParticleSystem astePS;
     public ParticleSystem shieldPS;
 
     public AudioSource aS;
@@ -256,7 +257,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             aS.PlayOneShot(asteroidAC);
 
-            StartCoroutine(Particle(hitPS, other.transform));
+            StartCoroutine(Particle(astePS, other.transform));
             Destroy(other.gameObject);
             rb.AddForce(-transform.forward * dashSpeed * 1.5f, ForceMode.Impulse);
             ChangeColor(new Color(255f, 0f, 0f, 1f));
