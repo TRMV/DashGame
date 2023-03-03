@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerBehavior : MonoBehaviour
 {
@@ -52,6 +53,9 @@ public class PlayerBehavior : MonoBehaviour
     public AudioSource mainAS;
     public AudioClip deathMusic;
 
+    private float lastWidth;
+    private float lastHeight;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -77,10 +81,12 @@ public class PlayerBehavior : MonoBehaviour
         Dash();
         Pause();
         Scoring();
+        VolumeCam();
+        //ScreenRes();
 
         time += Time.deltaTime;
 
-        if (time >= 30f)
+        if (time >= 5f)
         {
             reloadtime = reloadtime + Time.deltaTime;
             if (reloadtime >= 10f)
@@ -190,6 +196,36 @@ public class PlayerBehavior : MonoBehaviour
         scoretext.GetComponent<TextMeshProUGUI>().text = scoring + "m";
     }
 
+    public void VolumeCam()
+    {
+        mycam.GetComponent<Volume>().profile.TryGet(out Vignette vignette);
+
+        Mathf.Clamp(vignette.intensity.value, 0f, 0.12f);
+        if (transform.position.z <= mycam.transform.position.z)
+        {
+            vignette.intensity.value += 0.01f * Time.deltaTime;
+        } else
+        {
+            vignette.intensity.value -= 0.01f * Time.deltaTime;
+        }
+        Mathf.Clamp(vignette.intensity.value, 0f, 0.12f);
+    }
+
+    public void ScreenRes()
+    {
+        /*if (lastWidth != Screen.width)
+        {
+            Screen.SetResolution(Screen.width, Screen.width * (16f / 9f));
+        }
+        else if (lastHeight != Screen.height)
+        {
+            Screen.SetResolution(Screen.height * (9f / 16f), Screen.height);
+        }*/
+
+        lastWidth = Screen.width;
+        lastHeight = Screen.height;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("triggerCamera"))
@@ -243,10 +279,8 @@ public class PlayerBehavior : MonoBehaviour
 
         for (int m = 1; m < range; m++)
         {
-            Debug.Log("HA");
             if (shipMesh.GetComponent<Renderer>().materials[m] = shipmatref)
             {
-                Debug.Log("BE");
                 shipMesh.GetComponent<Renderer>().materials[m].SetColor("_Color1", color);
             }
         }
@@ -283,7 +317,7 @@ public class PlayerBehavior : MonoBehaviour
     IEnumerator Atraction()
     {
         yield return new WaitForSeconds(1f);
-        AtractAddition += 0.1f;
+        AtractAddition += 0.5f;
     }
 
     private void OnTriggerExit(Collider other)
