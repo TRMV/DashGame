@@ -27,6 +27,7 @@ public class PlayerBehavior : MonoBehaviour
     private int maxDash;
     private bool isDashing;
 
+    public int shieldmax;
     private int shieldRecharge;
 
     private GameObject mycam;
@@ -240,9 +241,9 @@ public class PlayerBehavior : MonoBehaviour
                 if (hasShield == false)
                 {
                     shieldRecharge++;
-                    GameObject.Find("UI_ShieldON").GetComponent<Image>().fillAmount += 1/3;
+                    GameObject.Find("UI_ShieldON").GetComponent<Image>().fillAmount += 1/shieldmax;
 
-                    if (shieldRecharge == 3)
+                    if (shieldRecharge == shieldmax)
                     {
                         hasShield = true;
                         shieldRecharge = 0;

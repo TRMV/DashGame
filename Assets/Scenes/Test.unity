@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18346177, g: 0.2290388, b: 0.30586773, a: 1}
+  m_IndirectSpecularColor: {r: 0.1834542, g: 0.22903302, b: 0.30588645, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3797,6 +3797,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ShieldUI
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710729260663001290, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
+        type: 3}
+      propertyPath: shieldmax
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8710729260663001290, guid: 46d4af6c5502f7c41ab8f95b1a0a5a65,
         type: 3}
