@@ -27,6 +27,8 @@ public class PlayerBehavior : MonoBehaviour
     private int maxDash;
     private bool isDashing;
 
+    public GameObject ShieldUI;
+
     private GameObject mycam;
     private bool camCanFollow;
 
@@ -253,6 +255,7 @@ public class PlayerBehavior : MonoBehaviour
                 hasShield = false;
                 StartCoroutine(Particle(shieldPS, transform));
                 Destroy(GameObject.Find("ShieldSphere"));
+                ShieldUI.SetActive(false);
             } else
             {
                 Death();
