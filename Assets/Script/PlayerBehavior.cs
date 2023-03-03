@@ -42,6 +42,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public ParticleSystem dashPS;
     public ParticleSystem hitPS;
+    public ParticleSystem shieldPS;
 
     public AudioSource aS;
     public AudioClip dashAC;
@@ -201,7 +202,7 @@ public class PlayerBehavior : MonoBehaviour
         mycam.GetComponent<Volume>().profile.TryGet(out Vignette vignette);
 
         Mathf.Clamp(vignette.intensity.value, 0f, 0.12f);
-        if (transform.position.z <= mycam.transform.position.z)
+        if (Input.GetAxis("Vertical") < 0)
         {
             vignette.intensity.value += 0.01f * Time.deltaTime;
         } else
@@ -265,7 +266,8 @@ public class PlayerBehavior : MonoBehaviour
                 aS.PlayOneShot(shieldAC);
 
                 hasShield = false;
-                Destroy(GameObject.Find("ship_shield"));
+                StartCoroutine(Particle(shieldPS, transform));
+                Destroy(GameObject.Find("ShieldSphere"));
             } else
             {
                 Death();
